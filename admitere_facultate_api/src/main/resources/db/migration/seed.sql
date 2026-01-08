@@ -5,12 +5,10 @@
 create extension if not exists pgcrypto;
 
 -- Wipe existing data (order matters due to foreign keys)
-truncate table optiune restart identity;
-truncate table dosar restart identity;
-truncate table candidat restart identity;
-truncate table program_studiu restart identity;
-truncate table facultate restart identity;
-truncate table admin restart identity;
+-- Wipe existing data (order matters due to foreign keys)
+-- Wipe existing data (order matters due to foreign keys)
+truncate table optiune, dosar, candidat, program_studiu, facultate, admin restart identity;
+
 
 -- Facultati
 insert into facultate (id, nume) values
@@ -30,7 +28,7 @@ select setval(pg_get_serial_sequence('program_studiu', 'id'), (select max(id) fr
 
 -- Admin initial (parola: parola)
 insert into admin (id, email, parola_hash)
-values (1, 'admin@local', crypt('parola', gen_salt('bf')));
+values (1, 'admin@local', crypt('admin', gen_salt('bf')));
 
 select setval(pg_get_serial_sequence('admin', 'id'), (select max(id) from admin));
 
