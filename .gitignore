@@ -1,0 +1,48 @@
+# Single .gitignore for the entire repository.
+
+# OS files
+.DS_Store
+
+# Environment files
+.env
+
+# Node / frontend
+node_modules/
+.react-router/
+build/
+
+# Java / Maven
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Spring Tool Suite (STS)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Keep possible build directories under src/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# VS Code
+.vscode/

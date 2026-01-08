@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Fraunces", "Georgia", serif;
+}
+
+:root {
+  --ink: #261d18;
+  --muted: #6b5e56;
+  --brand: #c4532b;
+  --brand-dark: #a33f22;
+  --surface: rgba(255, 255, 255, 0.9);
+  --stroke: rgba(38, 29, 24, 0.14);
+  --highlight: rgba(196, 83, 43, 0.22);
+  color: var(--ink);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(1200px 600px at 10% 5%, #fff4e6 0%, rgba(255, 244, 230, 0) 55%),
+    radial-gradient(900px 500px at 90% 10%, #f7eadc 0%, rgba(247, 234, 220, 0) 50%),
+    linear-gradient(180deg, #f9f3ec 0%, #f3e8dd 100%);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+@layer components {
+  .card {
+    @apply rounded-3xl border bg-white/80 shadow-sm backdrop-blur;
+    border-color: var(--stroke);
+  }
+
+  .input {
+    @apply w-full rounded-2xl border bg-white/90 px-3 py-2 text-sm outline-none transition;
+    border-color: var(--stroke);
+    color: var(--ink);
+  }
+
+  .input:focus {
+    box-shadow: 0 0 0 3px var(--highlight);
+  }
+
+  .label {
+    @apply text-[10px] uppercase tracking-[0.24em];
+    color: var(--muted);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition;
+  }
+
+  .btn-primary {
+    background: var(--brand);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: var(--brand-dark);
+  }
+
+  .btn-ghost {
+    @apply border;
+    background: rgba(255, 255, 255, 0.75);
+    border-color: var(--stroke);
+    color: var(--ink);
+  }
+
+  .btn-danger {
+    background: #b42318;
+    color: #fff;
+  }
+
+  .btn-danger:hover {
+    background: #8f1a12;
+  }
+
+  .pill {
+    @apply rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em];
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--stroke);
+    color: var(--muted);
+  }
+}
