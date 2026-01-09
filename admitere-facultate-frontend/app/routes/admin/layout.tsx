@@ -99,10 +99,10 @@ export default function AdminLayout() {
     <div className="relative min-h-screen">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[-120px] h-64 w-64 -translate-x-1/2 rounded-full bg-[#f4b08b] opacity-40 blur-[100px]"
+        className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] h-64 w-64 -translate-x-1/2 rounded-full bg-[#f4b08b] opacity-40 blur-[100px]"
       />
       <header className="sticky top-0 z-20 border-b border-white/60 bg-[rgba(249,243,236,0.9)] backdrop-blur">
-        <div className="mx-auto flex w-full flex-col gap-4 px-6 py-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="relative z-10 mx-auto flex w-full flex-col gap-4 px-6 py-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-1">
             <p className="label">Administrare</p>
             <h1 className="font-display text-2xl">Admitere la facultate</h1>
