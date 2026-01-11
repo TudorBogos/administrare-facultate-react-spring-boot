@@ -23,6 +23,7 @@ export default function AdminLayout() {
   const [processError, setProcessError] = useState("");
   const [processMessage, setProcessMessage] = useState("");
   const [processing, setProcessing] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -96,55 +97,181 @@ export default function AdminLayout() {
   }
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative flex min-h-screen">
       <div
         aria-hidden
-        className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] h-64 w-64 -translate-x-1/2 rounded-full bg-[#f4b08b] opacity-40 blur-[100px]"
+        className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] h-64 w-64 -translate-x-1/2 bg-[#2f3d4b] opacity-35 blur-[110px]"
       />
-      <header className="sticky top-0 z-20 border-b border-white/60 bg-[rgba(249,243,236,0.9)] backdrop-blur">
-        <div className="relative z-10 mx-auto flex w-full flex-col gap-4 px-6 py-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="space-y-1">
-            <p className="label">Administrare</p>
-            <h1 className="font-display text-2xl">Admitere la facultate</h1>
-          </div>
-          <nav className="flex flex-wrap gap-2">
-            {sections.map((section) => (
-              <NavLink
-                key={section.to}
-                to={section.to}
-                className={({ isActive }) =>
-                  [
-                    "rounded-full px-3 py-2 text-sm font-semibold transition",
-                    isActive
-                      ? "bg-[var(--brand)] text-white shadow-sm"
-                      : "text-[var(--ink)] hover:bg-white/70",
-                  ].join(" ")
+      <aside
+        className={[
+          "sticky top-0 z-20 h-screen shrink-0 border-r border-[var(--stroke)] bg-[var(--header)] shadow-lg transition-all duration-300 ease-out",
+          sidebarCollapsed ? "w-20" : "w-64",
+        ].join(" ")}
+      >
+        <div className="flex h-full flex-col">
+          <div
+            className={[
+              "flex items-start justify-between gap-3 pt-6",
+              sidebarCollapsed ? "px-3" : "px-6",
+            ].join(" ")}
+          >
+            <div className="space-y-1">
+              <p className={sidebarCollapsed ? "label sr-only" : "label"}>
+                Administrare
+              </p>
+              <h1
+                className={
+                  sidebarCollapsed ? "font-display sr-only" : "font-display text-2xl"
                 }
               >
-                {section.label}
-              </NavLink>
-            ))}
-          </nav>
-          <div className="flex flex-wrap items-center gap-3 text-sm">
+                Admitere la facultate
+              </h1>
+              <span
+                aria-hidden
+                className={
+                  sidebarCollapsed
+                    ? "text-xs font-semibold uppercase tracking-[0.25em] text-(--muted)"
+                    : "hidden"
+                }
+              >
+                ADM
+              </span>
+            </div>
             <button
-              className="btn btn-primary"
+              className={[
+                "btn btn-ghost",
+                sidebarCollapsed ? "px-2" : "px-3",
+              ].join(" ")}
+              onClick={() => setSidebarCollapsed((prev) => !prev)}
+              aria-expanded={!sidebarCollapsed}
+              aria-label={sidebarCollapsed ? "Extinde meniul" : "Restrange meniul"}
+            >
+              <span className="sr-only">
+                {sidebarCollapsed ? "Extinde" : "Restrange"}
+              </span>
+              <span
+                aria-hidden
+                className="text-xs font-semibold"
+              >
+                {sidebarCollapsed ? ">>" : "<<"}
+              </span>
+            </button>
+          </div>
+          <nav
+            className={[
+              "mt-6 flex flex-1 flex-col gap-1 pb-6",
+              sidebarCollapsed ? "px-2" : "px-4",
+            ].join(" ")}
+          >
+            {sections.map((section) => {
+              const shortLabel = section.label.includes(" ")
+                ? section.label
+                    .split(" ")
+                    .map((word) => word[0])
+                    .join("")
+                    .slice(0, 2)
+                    .toUpperCase()
+                : section.label.slice(0, 2).toUpperCase();
+              return (
+                <NavLink
+                  key={section.to}
+                  to={section.to}
+                  title={section.label}
+                  className={({ isActive }) =>
+                    [
+                      "flex items-center px-4 py-2 text-sm font-semibold transition",
+                      sidebarCollapsed ? "justify-center" : "justify-between",
+                      isActive
+                        ? "bg-[var(--brand)] text-white shadow-sm"
+                        : "text-[var(--ink)] hover:bg-white/10",
+                    ].join(" ")
+                  }
+                >
+                  <span className={sidebarCollapsed ? "sr-only" : ""}>
+                    {section.label}
+                  </span>
+                  <span
+                    aria-hidden
+                    className={
+                      sidebarCollapsed ? "text-xs font-semibold" : "hidden"
+                    }
+                  >
+                    {shortLabel}
+                  </span>
+                </NavLink>
+              );
+            })}
+          </nav>
+          <div
+            className={[
+              "mt-auto space-y-3 border-t border-[var(--stroke)] pb-6 pt-4",
+              sidebarCollapsed ? "px-2" : "px-4",
+            ].join(" ")}
+          >
+            <button
+              className={[
+                "btn btn-primary w-full",
+                sidebarCollapsed ? "justify-center px-2" : "",
+              ].join(" ")}
               onClick={handleProcesareAdmitere}
               disabled={processing}
             >
-              {processing ? "Se proceseaza..." : "Proceseaza admiterea"}
+              <span className={sidebarCollapsed ? "sr-only" : ""}>
+                {processing ? "Se proceseaza..." : "Proceseaza admiterea"}
+              </span>
+              <span
+                aria-hidden
+                className={
+                  sidebarCollapsed ? "text-[10px] font-semibold tracking-[0.18em]" : "hidden"
+                }
+              >
+                PROC
+              </span>
             </button>
-            <span className="text-(--muted)">{admin?.email}</span>
-            <button className="btn btn-ghost" onClick={handleLogout}>
-              Deconectare
+            <span
+              className={
+                sidebarCollapsed
+                  ? "sr-only"
+                  : "block truncate text-xs text-(--muted)"
+              }
+            >
+              {admin?.email}
+            </span>
+            <span
+              aria-hidden
+              className={
+                sidebarCollapsed ? "text-[10px] font-semibold text-(--muted)" : "hidden"
+              }
+            >
+              ADMIN
+            </span>
+            <button
+              className={[
+                "btn btn-ghost w-full",
+                sidebarCollapsed ? "justify-center px-2" : "",
+              ].join(" ")}
+              onClick={handleLogout}
+            >
+              <span className={sidebarCollapsed ? "sr-only" : ""}>
+                Deconectare
+              </span>
+              <span
+                aria-hidden
+                className={
+                  sidebarCollapsed ? "text-[10px] font-semibold tracking-[0.18em]" : "hidden"
+                }
+              >
+                IESI
+              </span>
             </button>
           </div>
         </div>
-      </header>
+      </aside>
       <main className="mx-auto flex w-full flex-1 flex-col gap-6 px-6 py-10">
         <ErrorBanner message={error} />
         <ErrorBanner message={processError} />
         {processMessage ? (
-          <p className="rounded-2xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+          <p className="border border-emerald-500/40 bg-emerald-950/40 px-3 py-2 text-sm text-emerald-100">
             {processMessage}
           </p>
         ) : null}

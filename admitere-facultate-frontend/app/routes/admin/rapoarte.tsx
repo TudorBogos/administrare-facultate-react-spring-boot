@@ -216,9 +216,9 @@ export default function RapoartePage() {
               <div className='space-y-3'>
                 <div className='flex items-center gap-3'>
                   <span className='w-16 text-xs text-(--muted)'>Admisi</span>
-                  <div className='h-2 flex-1 rounded-full bg-[var(--stroke)]'>
+                  <div className='h-2 flex-1 bg-[var(--stroke)]'>
                     <div
-                      className='h-2 rounded-full bg-emerald-500'
+                      className='h-2 bg-emerald-500'
                       style={{ width: `${(item.admisi / maxBar) * 100}%` }}
                     />
                   </div>
@@ -226,9 +226,9 @@ export default function RapoartePage() {
                 </div>
                 <div className='flex items-center gap-3'>
                   <span className='w-16 text-xs text-(--muted)'>Respinsi</span>
-                  <div className='h-2 flex-1 rounded-full bg-[var(--stroke)]'>
+                  <div className='h-2 flex-1 bg-[var(--stroke)]'>
                     <div
-                      className='h-2 rounded-full bg-rose-500'
+                      className='h-2 bg-rose-500'
                       style={{ width: `${(item.respinsi / maxBar) * 100}%` }}
                     />
                   </div>

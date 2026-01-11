@@ -10,7 +10,7 @@ export function ErrorBanner({ message, className = "" }: ErrorBannerProps) {
 
   return (
     <p
-      className={`rounded-2xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700 ${className}`.trim()}
+      className={`border border-rose-500/40 bg-rose-950/40 px-3 py-2 text-sm text-rose-100 ${className}`.trim()}
     >
       {message}
     </p>
