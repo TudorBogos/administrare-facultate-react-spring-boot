@@ -216,7 +216,7 @@ export default function DosarePage() {
                   <th className='pb-3'>Status</th>
                   <th className='pb-3'>Medie</th>
                   <th className='pb-3'>Creat</th>
-                  <th className='pb-3'>Actiuni</th>
+                  <th className='pb-3 text-right'>Actiuni</th>
                 </tr>
               </TableHead>
               <TableBody>

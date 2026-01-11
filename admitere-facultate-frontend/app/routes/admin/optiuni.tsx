@@ -6,7 +6,7 @@ import { FormField } from "~/components/FormField";
 import { SectionHeader } from "~/components/SectionHeader";
 import { Table, TableBody, TableHead } from "~/components/Table";
 import { api } from "~/lib/api";
-import type { Optiune } from "~/lib/types";
+import type { Candidat, DosarView, Optiune, ProgramStudiuView } from "~/lib/types";
 
 const emptyForm = {
   dosarId: "",
@@ -16,6 +16,12 @@ const emptyForm = {
 
 export default function OptiuniPage() {
   const [items, setItems] = useState<Optiune[]>([]);
+  const [dosarEmailMap, setDosarEmailMap] = useState<Record<number, string>>(
+    {}
+  );
+  const [programNameMap, setProgramNameMap] = useState<Record<number, string>>(
+    {}
+  );
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [error, setError] = useState("");
@@ -23,8 +29,39 @@ export default function OptiuniPage() {
   const load = async () => {
     setError("");
     try {
-      const data = await api<Optiune[]>("/api/admin/optiuni");
-      setItems(data);
+      const [optiuniData, dosareData, candidatiData, programeData] = await Promise.all([
+        api<Optiune[]>("/api/admin/optiuni"),
+        api<DosarView[]>("/api/admin/dosare"),
+        api<Candidat[]>("/api/admin/candidati"),
+        api<ProgramStudiuView[]>("/api/admin/programe-studiu"),
+      ]);
+      const candidatEmailById = candidatiData.reduce<Record<number, string>>(
+        (acc, candidat) => {
+          acc[candidat.id] = candidat.email;
+          return acc;
+        },
+        {}
+      );
+      const nextDosarEmailMap = dosareData.reduce<Record<number, string>>(
+        (acc, dosar) => {
+          const email = candidatEmailById[dosar.candidatId];
+          if (email) {
+            acc[dosar.id] = email;
+          }
+          return acc;
+        },
+        {}
+      );
+      const nextProgramNameMap = programeData.reduce<Record<number, string>>(
+        (acc, program) => {
+          acc[program.id] = program.nume;
+          return acc;
+        },
+        {}
+      );
+      setItems(optiuniData);
+      setDosarEmailMap(nextDosarEmailMap);
+      setProgramNameMap(nextProgramNameMap);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Nu pot incarca datele.");
     }
@@ -201,9 +238,11 @@ export default function OptiuniPage() {
                 <tr>
                   <th className='pb-3'>ID</th>
                   <th className='pb-3'>Dosar ID</th>
+                  <th className='pb-3'>Email</th>
                   <th className='pb-3'>Program ID</th>
+                  <th className='pb-3'>Program</th>
                   <th className='pb-3'>Prioritate</th>
-                  <th className='pb-3'>Actiuni</th>
+                  <th className='pb-3 text-right'>Actiuni</th>
                 </tr>
               </TableHead>
               <TableBody>
@@ -211,7 +250,13 @@ export default function OptiuniPage() {
                   <tr key={item.id}>
                     <td className='py-3 font-semibold'>{item.id}</td>
                     <td className='py-3'>{item.dosarId}</td>
+                    <td className='py-3'>
+                      {dosarEmailMap[item.dosarId] ?? "-"}
+                    </td>
                     <td className='py-3'>{item.programId}</td>
+                    <td className='py-3'>
+                      {programNameMap[item.programId] ?? "-"}
+                    </td>
                     <td className='py-3'>{item.prioritate}</td>
                     <td className='py-3 text-right'>
                       <div className='flex justify-end gap-2'>
@@ -233,7 +278,7 @@ export default function OptiuniPage() {
                   <tr>
                     <td
                       className='py-6 text-sm text-(--muted)'
-                      colSpan={5}>
+                      colSpan={7}>
                       Nu exista optiuni inregistrate.
                     </td>
                   </tr>

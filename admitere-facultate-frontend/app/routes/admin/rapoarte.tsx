@@ -97,10 +97,7 @@ export default function RapoartePage() {
       />
 
       <Card className='p-6'>
-        <CardHeader
-          title='Perioada raportare'
-          meta={<span className='pill'>Filtrare</span>}
-        />
+        <CardHeader title='Perioada raportare' />
         <form
           className='mt-4 grid gap-4 md:grid-cols-4'
           onSubmit={handleSubmit}>
@@ -203,10 +200,7 @@ export default function RapoartePage() {
       </Card>
 
       <Card className='p-6'>
-        <CardHeader
-          title='Rezultate pe facultati'
-          meta={<span className='pill'>Admis / Respins</span>}
-        />
+        <CardHeader title='Rezultate pe facultati' />
         <div className='mt-4 space-y-5'>
           {sortedFacultateReport.map((item) => (
             <div

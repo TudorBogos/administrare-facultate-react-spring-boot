@@ -137,10 +137,7 @@ export default function CandidatiPage() {
       />
 
       <Card className='p-6'>
-        <CardHeader
-          title='Filtrare rapida'
-          meta={<span className='pill'>Filtrare multipla</span>}
-        />
+        <CardHeader title='Filtrare rapida' />
         <form
           className='mt-4 grid gap-4 md:grid-cols-[1fr_1fr_1.2fr_auto_auto]'
           onSubmit={handleFilterSubmit}>
@@ -278,7 +275,7 @@ export default function CandidatiPage() {
                   <th className='pb-3'>Nume</th>
                   <th className='pb-3'>Prenume</th>
                   <th className='pb-3'>Email</th>
-                  <th className='pb-3'>Actiuni</th>
+                  <th className='pb-3 text-right'>Actiuni</th>
                 </tr>
               </TableHead>
               <TableBody>

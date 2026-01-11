@@ -1,10 +1,15 @@
+const apiBaseUrl =
+  import.meta.env.PROD
+    ? import.meta.env.VITE_API_URL ?? "http://localhost:8080"
+    : "";
+
 export async function api<T>(path: string, options: RequestInit = {}): Promise<T> {
   const headers = new Headers(options.headers);
   if (!headers.has("Content-Type") && options.body) {
     headers.set("Content-Type", "application/json");
   }
 
-  const response = await fetch(path, {
+  const response = await fetch(`${apiBaseUrl}${path}`, {
     ...options,
     headers,
     credentials: "include",

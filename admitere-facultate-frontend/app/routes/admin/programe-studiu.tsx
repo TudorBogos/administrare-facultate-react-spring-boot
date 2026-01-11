@@ -259,10 +259,7 @@ export default function ProgrameStudiuPage() {
       />
 
       <Card className='p-6'>
-        <CardHeader
-          title='Filtrare locuri'
-          meta={<span className='pill'>Buget / Taxa</span>}
-        />
+        <CardHeader title='Filtrare locuri' />
         <form
           className='mt-4 grid gap-4 md:grid-cols-4'
           onSubmit={handleFilterSubmit}>
@@ -486,7 +483,7 @@ export default function ProgrameStudiuPage() {
                   <th className='pb-3'>Nume</th>
                   <th className='pb-3'>Buget</th>
                   <th className='pb-3'>Taxa</th>
-                  <th className='pb-3'>Actiuni</th>
+                  <th className='pb-3 text-right'>Actiuni</th>
                 </tr>
               </TableHead>
               <TableBody>

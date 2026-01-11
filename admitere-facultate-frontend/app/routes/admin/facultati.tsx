@@ -137,7 +137,7 @@ export default function FacultatiPage() {
                 <tr>
                   <th className='pb-3'>ID</th>
                   <th className='pb-3'>Nume</th>
-                  <th className='pb-3'>Actiuni</th>
+                  <th className='pb-3 text-right'>Actiuni</th>
                 </tr>
               </TableHead>
               <TableBody>

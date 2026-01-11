@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Card } from "~/components/Card";
 import { CardHeader } from "~/components/CardHeader";
 import { ErrorBanner } from "~/components/ErrorBanner";
@@ -32,12 +32,13 @@ export default function RezultateAdmiterePage() {
     return medie.toFixed(2);
   };
 
-  const formatPrioritate = (prioritate: number | null) => {
-    if (prioritate === null || Number.isNaN(prioritate)) {
-      return "-";
-    }
-    return String(prioritate);
-  };
+  const groupedEntries = Object.entries(
+    items.reduce<Record<string, RezultatAdmitere[]>>((acc, item) => {
+      const key = item.facultateNume ?? "Fara facultate";
+      acc[key] = acc[key] ? [...acc[key], item] : [item];
+      return acc;
+    }, {})
+  ).sort(([a], [b]) => a.localeCompare(b, "ro"));
   return (
     <section className='space-y-8'>
       <SectionHeader
@@ -59,29 +60,41 @@ export default function RezultateAdmiterePage() {
                 <th className='pb-3'>Medie</th>
                 <th className='pb-3'>Program</th>
                 <th className='pb-3'>Facultate</th>
-                <th className='pb-3'>Prioritate</th>
                 <th className='pb-3'>Status</th>
               </tr>
             </TableHead>
             <TableBody>
-              {items.map((item) => (
-                <tr key={`${item.dosarId}-${item.programId}-${item.prioritate}`}>
-                  <td className='py-3 font-semibold'>{item.dosarId}</td>
-                  <td className='py-3'>
-                    {item.candidatNume} {item.candidatPrenume}
-                  </td>
-                  <td className='py-3'>{formatMedie(item.medie)}</td>
-                  <td className='py-3'>{item.programNume ?? "-"}</td>
-                  <td className='py-3'>{item.facultateNume ?? "-"}</td>
-                  <td className='py-3'>{formatPrioritate(item.prioritate)}</td>
-                  <td className='py-3'>{item.status}</td>
-                </tr>
+              {groupedEntries.map(([facultate, entries]) => (
+                <Fragment key={facultate}>
+                  <tr>
+                    <td
+                      className='py-2 text-xs uppercase tracking-[0.2em] text-(--muted)'
+                      colSpan={6}
+                    >
+                      {facultate}
+                    </td>
+                  </tr>
+                  {entries.map((item) => (
+                    <tr
+                      key={`${item.dosarId}-${item.programId}-${item.prioritate}`}
+                    >
+                      <td className='py-3 font-semibold'>{item.dosarId}</td>
+                      <td className='py-3'>
+                        {item.candidatNume} {item.candidatPrenume}
+                      </td>
+                      <td className='py-3'>{formatMedie(item.medie)}</td>
+                      <td className='py-3'>{item.programNume ?? "-"}</td>
+                      <td className='py-3'>{item.facultateNume ?? "-"}</td>
+                      <td className='py-3'>{item.status}</td>
+                    </tr>
+                  ))}
+                </Fragment>
               ))}
               {items.length === 0 ? (
                 <tr>
                   <td
                     className='py-6 text-sm text-(--muted)'
-                    colSpan={7}>
+                    colSpan={6}>
                     Nu exista rezultate procesate.
                   </td>
                 </tr>
