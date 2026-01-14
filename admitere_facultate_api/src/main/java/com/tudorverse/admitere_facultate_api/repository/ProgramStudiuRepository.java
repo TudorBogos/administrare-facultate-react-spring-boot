@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Spring Data repository for program_studiu entities.
+ * Repository Spring Data pentru entitati program_studiu.
  */
 public interface ProgramStudiuRepository extends JpaRepository<ProgramStudiu, Long> {
 

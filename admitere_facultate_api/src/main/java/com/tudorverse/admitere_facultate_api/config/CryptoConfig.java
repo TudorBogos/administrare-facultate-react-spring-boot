@@ -6,14 +6,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Spring configuration for password hashing utilities.
+ * Configurare Spring pentru utilitare de hash-uire a parolelor.
  */
 @Configuration
 public class CryptoConfig {
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-    // BCrypt keeps stored hashes slow to brute-force.
+    // BCrypt mentine hash-urile lente pentru atacuri brute-force.
     return new BCryptPasswordEncoder();
   }
 }

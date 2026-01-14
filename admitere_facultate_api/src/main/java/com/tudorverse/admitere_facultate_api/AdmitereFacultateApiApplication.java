@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 /**
- * Application entry point; boots Spring and checks DB connectivity on startup.
+ * Punctul de intrare al aplicatiei; porneste Spring si verifica conexiunea la baza de date la pornire.
  */
 @SpringBootApplication
 public class AdmitereFacultateApiApplication {

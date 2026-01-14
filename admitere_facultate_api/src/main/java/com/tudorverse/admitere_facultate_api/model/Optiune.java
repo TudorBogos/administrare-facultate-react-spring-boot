@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * JPA entity mapping to the optiune table.
+ * Entitate JPA mapata la tabela optiune.
  */
 @Entity
 @Table(name = "optiune")

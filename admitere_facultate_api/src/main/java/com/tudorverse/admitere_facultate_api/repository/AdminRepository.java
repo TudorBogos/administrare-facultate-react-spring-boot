@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for admin entities.
+ * Repository Spring Data pentru entitati admin.
  */
 public interface AdminRepository extends JpaRepository<Admin, Long> {
   Optional<Admin> findByEmail(String email);

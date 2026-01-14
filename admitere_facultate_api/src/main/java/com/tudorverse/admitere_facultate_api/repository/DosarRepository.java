@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 /**
- * Spring Data repository for dosar entities.
+ * Repository Spring Data pentru entitati dosar.
  */
 public interface DosarRepository extends JpaRepository<Dosar, Long> {
 

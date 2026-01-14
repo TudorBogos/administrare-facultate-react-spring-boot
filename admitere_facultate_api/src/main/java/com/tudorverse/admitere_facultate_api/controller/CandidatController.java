@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * CRUD endpoints for candidati plus optional search filters.
+ * Endpoint-uri CRUD pentru candidati plus filtre de cautare optionale.
  */
 @RestController
 @RequestMapping("/api/admin/candidati")
@@ -31,7 +31,7 @@ public class CandidatController {
   private final PasswordEncoder passwordEncoder;
 
   /**
-   * Creates the controller with repository and password encoder dependencies.
+   * Creeaza controller-ul cu dependintele de repository si encoder-ul de parole.
    */
   public CandidatController(CandidatRepository candidatRepository, PasswordEncoder passwordEncoder) {
     this.candidatRepository = candidatRepository;
@@ -39,7 +39,7 @@ public class CandidatController {
   }
 
   /**
-   * Lists candidati filtered by optional nume, prenume, or email values.
+   * Listeaza candidati filtrati dupa nume, prenume sau email (optionale).
    */
   @GetMapping
   public List<Candidat> list(@RequestParam(required = false) String nume,
@@ -60,7 +60,7 @@ public class CandidatController {
   }
 
   /**
-   * Creates a new candidat after normalizing fields and hashing the password.
+   * Creeaza un candidat nou dupa normalizarea campurilor si hash-uirea parolei.
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
@@ -84,7 +84,7 @@ public class CandidatController {
   }
 
   /**
-   * Updates an existing candidat and optionally replaces the password hash.
+   * Actualizeaza un candidat existent si optional inlocuieste hash-ul parolei.
    */
   @PutMapping("/{id}")
   public Candidat update(@PathVariable Long id, @RequestBody CandidatUpsertRequest request) {
@@ -110,7 +110,7 @@ public class CandidatController {
   }
 
   /**
-   * Deletes the candidat identified by id.
+   * Sterge candidatul identificat prin id.
    */
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -122,7 +122,7 @@ public class CandidatController {
   }
 
   /**
-   * Trims the input and returns null when it is empty or null.
+   * Elimina spatiile de la capete si returneaza null cand este gol sau null.
    */
   private String normalize(String value) {
     if (value == null) {
@@ -133,7 +133,7 @@ public class CandidatController {
   }
 
   /**
-   * Normalizes the filter value and lowercases it for case-insensitive search.
+   * Normalizeaza valoarea filtrului si o trece in litere mici pentru cautare fara diferentiere de majuscule.
    */
   private String normalizeFilter(String value) {
     String normalized = normalize(value);

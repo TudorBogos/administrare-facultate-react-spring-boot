@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Read-only endpoints for viewing processed admission results.
+ * Endpoint-uri doar pentru citire pentru vizualizarea rezultatelor procesate.
  */
 @RestController
 @RequestMapping("/api/admin/rezultate")

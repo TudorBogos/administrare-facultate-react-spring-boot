@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Endpoint for triggering admission processing from the admin dashboard.
+ * Endpoint pentru declansarea procesarii admiterii din dashboard-ul admin.
  */
 @RestController
 @RequestMapping("/api/admin/procesare")

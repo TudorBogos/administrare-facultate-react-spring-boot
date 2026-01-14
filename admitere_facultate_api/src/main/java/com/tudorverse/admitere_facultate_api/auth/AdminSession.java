@@ -3,7 +3,7 @@ package com.tudorverse.admitere_facultate_api.auth;
 import java.time.Instant;
 
 /**
- * Immutable value object representing an admin session in memory.
+ * Obiect valoare imutabil care reprezinta o sesiune de admin in memorie.
  */
 public record AdminSession(Long adminId, Instant createdAt) {
 }

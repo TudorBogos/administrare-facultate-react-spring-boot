@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * CRUD endpoints for the program_studiu table.
+ * Endpoint-uri CRUD pentru tabela program_studiu.
  */
 @RestController
 @RequestMapping("/api/admin/programe-studiu")

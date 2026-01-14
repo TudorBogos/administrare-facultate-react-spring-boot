@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * JPA entity mapping to the program_studiu table.
+ * Entitate JPA mapata la tabela program_studiu.
  */
 @Entity
 @Table(name = "program_studiu")

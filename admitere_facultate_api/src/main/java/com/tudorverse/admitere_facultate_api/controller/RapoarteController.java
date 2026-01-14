@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Read-only reports for admission processing results.
+ * Rapoarte doar pentru citire pentru rezultatele procesarii admiterii.
  */
 @RestController
 @RequestMapping("/api/admin/rapoarte")

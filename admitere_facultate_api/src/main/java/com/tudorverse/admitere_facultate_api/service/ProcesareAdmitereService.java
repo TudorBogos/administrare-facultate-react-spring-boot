@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service that processes validated applications and assigns available seats.
+ * Serviciu care proceseaza dosarele validate si aloca locurile disponibile.
  */
 @Service
 public class ProcesareAdmitereService {
@@ -32,7 +32,7 @@ public class ProcesareAdmitereService {
   private final ProgramStudiuRepository programStudiuRepository;
   private final CandidatRepository candidatRepository;
 
-  // In-memory cache of the last processing run (cleared on restart).
+  // Cache in memorie al ultimei rulari (se sterge la restart).
   private volatile List<RezultatAdmitereResponse> ultimeleRezultate = List.of();
 
   public ProcesareAdmitereService(DosarRepository dosarRepository,

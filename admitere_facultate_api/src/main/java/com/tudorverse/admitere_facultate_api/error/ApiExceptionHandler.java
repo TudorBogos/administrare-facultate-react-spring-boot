@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * Global error handler that normalizes DB constraint failures.
+ * Handler global de erori care normalizeaza incalcarile de constrangeri din DB.
  */
 @RestControllerAdvice
 public class ApiExceptionHandler {
 
-  // Normalize database constraint violations into a friendly message.
+  // Normalizeaza incalcarile de constrangeri din baza de date intr-un mesaj prietenos.
   @ExceptionHandler(DataIntegrityViolationException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public Map<String, String> handleDataIntegrityViolation() {

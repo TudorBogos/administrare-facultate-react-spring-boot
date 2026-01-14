@@ -1,7 +1,7 @@
 package com.tudorverse.admitere_facultate_api.dto;
 
 /**
- * Request payload for admin login.
+ * Payload de cerere pentru autentificarea admin.
  */
 public record AdminLoginRequest(String email, String parola) {
 }

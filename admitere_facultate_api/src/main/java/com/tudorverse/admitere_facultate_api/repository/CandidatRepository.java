@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Spring Data repository for candidat entities with search helpers.
+ * Repository Spring Data pentru entitati candidat, cu functii de cautare.
  */
 public interface CandidatRepository extends JpaRepository<Candidat, Long> {
 

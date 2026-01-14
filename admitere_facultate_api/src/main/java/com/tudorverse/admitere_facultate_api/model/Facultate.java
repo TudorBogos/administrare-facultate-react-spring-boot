@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * JPA entity mapping to the facultate table.
+ * Entitate JPA mapata la tabela facultate.
  */
 @Entity
 @Table(name = "facultate")

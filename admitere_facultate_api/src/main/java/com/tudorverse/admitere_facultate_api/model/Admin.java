@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
 
 /**
- * JPA entity mapping to the admin table.
+ * Entitate JPA mapata la tabela admin.
  */
 @Entity
 @Table(name = "admin")

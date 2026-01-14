@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * CRUD endpoints for the facultate table.
+ * Endpoint-uri CRUD pentru tabela facultate.
  */
 @RestController
 @RequestMapping("/api/admin/facultati")
@@ -27,14 +27,14 @@ public class FacultateController {
   private final FacultateRepository facultateRepository;
 
   /**
-   * Creates the controller with its repository dependency.
+   * Creeaza controller-ul cu dependinta de repository.
    */
   public FacultateController(FacultateRepository facultateRepository) {
     this.facultateRepository = facultateRepository;
   }
 
   /**
-   * Lists facultati, optionally filtered by a name query string.
+   * Listeaza facultati, optional filtrate dupa un query de nume.
    */
   @GetMapping
   public List<Facultate> list(@RequestParam(required = false) String q) {
@@ -46,7 +46,7 @@ public class FacultateController {
   }
 
   /**
-   * Creates a new facultate after validating the payload.
+   * Creeaza o facultate noua dupa validarea payload-ului.
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
@@ -60,7 +60,7 @@ public class FacultateController {
   }
 
   /**
-   * Updates the facultate name for the given id.
+   * Actualizeaza numele facultatii pentru id-ul dat.
    */
   @PutMapping("/{id}")
   public Facultate update(@PathVariable Long id, @RequestBody Facultate facultate) {
@@ -74,7 +74,7 @@ public class FacultateController {
   }
 
   /**
-   * Deletes the facultate identified by id.
+   * Sterge facultatea identificata prin id.
    */
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -86,14 +86,14 @@ public class FacultateController {
   }
 
   /**
-   * Returns true when the string is null or only whitespace.
+   * Returneaza true cand sirul este null sau contine doar spatii.
    */
   private boolean isBlank(String value) {
     return value == null || value.trim().isEmpty();
   }
 
   /**
-   * Trims the input and returns null when it is empty or null.
+   * Elimina spatiile de la capete si returneaza null cand este gol sau null.
    */
   private String normalize(String value) {
     if (value == null) {

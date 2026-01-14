@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * CRUD endpoints for the optiune table.
+ * Endpoint-uri CRUD pentru tabela optiune.
  */
 @RestController
 @RequestMapping("/api/admin/optiuni")
@@ -26,14 +26,14 @@ public class OptiuneController {
   private final OptiuneRepository optiuneRepository;
 
   /**
-   * Creates the controller with its repository dependency.
+   * Creeaza controller-ul cu dependinta de repository.
    */
   public OptiuneController(OptiuneRepository optiuneRepository) {
     this.optiuneRepository = optiuneRepository;
   }
 
   /**
-   * Lists all optiuni sorted by id.
+   * Listeaza toate optiunile sortate dupa id.
    */
   @GetMapping
   public List<Optiune> list() {
@@ -41,7 +41,7 @@ public class OptiuneController {
   }
 
   /**
-   * Creates a new optiune from the request payload.
+   * Creeaza o optiune noua din payload-ul cererii.
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
@@ -57,7 +57,7 @@ public class OptiuneController {
   }
 
   /**
-   * Updates an existing optiune using the provided id and payload.
+   * Actualizeaza o optiune existenta folosind id-ul si payload-ul furnizate.
    */
   @PutMapping("/{id}")
   public Optiune update(@PathVariable Long id, @RequestBody Optiune optiune) {
@@ -73,7 +73,7 @@ public class OptiuneController {
   }
 
   /**
-   * Deletes the optiune identified by id.
+   * Sterge optiunea identificata prin id.
    */
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -85,6 +85,6 @@ public class OptiuneController {
   }
 
   /**
-   * Returns true when the string is null or only whitespace.
+   * Returneaza true cand sirul este null sau contine doar spatii.
    */
 }

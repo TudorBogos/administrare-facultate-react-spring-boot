@@ -1,7 +1,7 @@
 package com.tudorverse.admitere_facultate_api.dto;
 
 /**
- * Report row with the number of admitted students per study program.
+ * Rand de raport cu numarul de studenti admisi pe program de studiu.
  */
 public record RaportInscrieriProgramResponse(Long programId, String programNume,
     String facultateNume, int inscrisi) {

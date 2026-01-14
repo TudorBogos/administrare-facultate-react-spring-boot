@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 /**
- * JPA entity mapping to the dosar table.
+ * Entitate JPA mapata la tabela dosar.
  */
 @Entity
 @Table(name = "dosar")

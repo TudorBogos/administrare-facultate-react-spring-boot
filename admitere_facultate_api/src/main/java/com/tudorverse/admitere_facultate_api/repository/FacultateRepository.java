@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for facultate entities.
+ * Repository Spring Data pentru entitati facultate.
  */
 public interface FacultateRepository extends JpaRepository<Facultate, Long> {
 

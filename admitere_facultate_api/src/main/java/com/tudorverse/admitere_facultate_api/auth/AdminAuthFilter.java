@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
- * Servlet filter that protects /api/admin routes using an HttpOnly session cookie.
+ * Filtru servlet care protejeaza rutele /api/admin folosind un cookie de sesiune HttpOnly.
  */
 @Component
 public class AdminAuthFilter extends OncePerRequestFilter {
@@ -23,7 +23,7 @@ public class AdminAuthFilter extends OncePerRequestFilter {
     this.sessionService = sessionService;
   }
 
-  // Only protect admin CRUD endpoints with session validation.
+  // Protejeaza doar endpoint-urile admin CRUD prin validarea sesiunii.
   @Override
   protected boolean shouldNotFilter(HttpServletRequest request) {
     return !request.getRequestURI().startsWith("/api/admin");
@@ -32,13 +32,13 @@ public class AdminAuthFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
-    // Allow CORS preflight requests to pass through.
+    // Permite trecerea cererilor preflight CORS.
     if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
       filterChain.doFilter(request, response);
       return;
     }
 
-    // Session id is stored in an HttpOnly cookie.
+    // Id-ul sesiunii este stocat intr-un cookie HttpOnly.
     String sessionId = null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {

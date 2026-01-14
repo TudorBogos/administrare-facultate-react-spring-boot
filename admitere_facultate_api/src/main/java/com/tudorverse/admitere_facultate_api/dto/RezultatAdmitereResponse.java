@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 /**
- * API response describing a processed admission result.
+ * Raspuns API care descrie un rezultat de admitere procesat.
  */
 public record RezultatAdmitereResponse(Long dosarId, Long candidatId, String candidatNume,
     String candidatPrenume, BigDecimal medie, OffsetDateTime createdAt,

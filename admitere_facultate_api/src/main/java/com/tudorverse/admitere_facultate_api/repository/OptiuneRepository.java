@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for optiune entities.
+ * Repository Spring Data pentru entitati optiune.
  */
 public interface OptiuneRepository extends JpaRepository<Optiune, Long> {
 

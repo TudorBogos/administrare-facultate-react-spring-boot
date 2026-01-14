@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * CRUD endpoints for managing admin accounts.
+ * Endpoint-uri CRUD pentru administrarea conturilor de admin.
  */
 @RestController
 @RequestMapping("/api/admin/admini")

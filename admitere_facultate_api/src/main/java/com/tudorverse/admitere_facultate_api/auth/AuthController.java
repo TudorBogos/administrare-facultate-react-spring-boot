@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * Authentication endpoints for admin login, logout, and session checks.
+ * Endpoint-uri de autentificare pentru login/logout admin si verificarea sesiunii.
  */
 @RestController
 @RequestMapping("/api/auth")
@@ -58,7 +58,7 @@ public class AuthController {
     }
 
     String sessionId = sessionService.createSession(admin.getId());
-    // Set HttpOnly cookie with the server-side session id.
+    // Seteaza cookie HttpOnly cu id-ul sesiunii de pe server.
     ResponseCookie cookie = ResponseCookie.from(AdminAuthFilter.COOKIE_NAME, sessionId)
         .httpOnly(true)
         .path("/")
@@ -73,7 +73,7 @@ public class AuthController {
   public ResponseEntity<Void> logout(
       @CookieValue(value = AdminAuthFilter.COOKIE_NAME, required = false) String sessionId,
       HttpServletResponse response) {
-    // Remove session from memory and clear cookie.
+    // Sterge sesiunea din memorie si goleste cookie-ul.
     sessionService.invalidate(sessionId);
     ResponseCookie cookie = ResponseCookie.from(AdminAuthFilter.COOKIE_NAME, "")
         .httpOnly(true)
@@ -88,7 +88,7 @@ public class AuthController {
   @GetMapping("/me")
   public ResponseEntity<AdminResponse> me(
       @CookieValue(value = AdminAuthFilter.COOKIE_NAME, required = false) String sessionId) {
-    // Lightweight session check for the dashboard.
+    // Verificare rapida a sesiunii pentru dashboard.
     Optional<Long> adminId = sessionService.getAdminId(sessionId);
     if (adminId.isEmpty()) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

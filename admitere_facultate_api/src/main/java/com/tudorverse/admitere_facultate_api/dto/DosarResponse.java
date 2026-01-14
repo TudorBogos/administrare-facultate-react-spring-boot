@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 /**
- * Response payload for dosar rows including candidate name details.
+ * Payload de raspuns pentru dosare, inclusiv numele candidatului.
  */
 public record DosarResponse(Long id, Long candidatId, String candidatNume,
     String candidatPrenume, String status, BigDecimal medie, OffsetDateTime createdAt) {

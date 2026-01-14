@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * CRUD endpoints for the dosar table.
+ * Endpoint-uri CRUD pentru tabela dosar.
  */
 @RestController
 @RequestMapping("/api/admin/dosare")
@@ -26,14 +26,14 @@ public class DosarController {
   private final DosarRepository dosarRepository;
 
   /**
-   * Creates the controller with its repository dependency.
+   * Creeaza controller-ul cu dependinta de repository.
    */
   public DosarController(DosarRepository dosarRepository) {
     this.dosarRepository = dosarRepository;
   }
 
   /**
-   * Lists all dosare sorted by id.
+   * Listeaza toate dosarele sortate dupa id.
    */
   @GetMapping
   public List<DosarResponse> list() {
@@ -41,7 +41,7 @@ public class DosarController {
   }
 
   /**
-   * Creates a new dosar after validating the payload.
+   * Creeaza un dosar nou dupa validarea payload-ului.
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
@@ -57,7 +57,7 @@ public class DosarController {
   }
 
   /**
-   * Updates an existing dosar using the provided id and payload.
+   * Actualizeaza un dosar existent folosind id-ul si payload-ul furnizate.
    */
   @PutMapping("/{id}")
   public Dosar update(@PathVariable Long id, @RequestBody Dosar dosar) {
@@ -73,7 +73,7 @@ public class DosarController {
   }
 
   /**
-   * Deletes the dosar identified by id.
+   * Sterge dosarul identificat prin id.
    */
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -85,7 +85,7 @@ public class DosarController {
   }
 
   /**
-   * Returns true when the string is null or only whitespace.
+   * Returneaza true cand sirul este null sau contine doar spatii.
    */
   private boolean isBlank(String value) {
     return value == null || value.trim().isEmpty();

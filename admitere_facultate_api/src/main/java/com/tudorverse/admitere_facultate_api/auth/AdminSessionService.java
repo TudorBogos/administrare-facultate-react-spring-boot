@@ -8,12 +8,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Service;
 
 /**
- * In-memory session store for admin login/logout.
+ * Stoc de sesiuni in memorie pentru login/logout admin.
  */
 @Service
 public class AdminSessionService {
 
-  // In-memory session store (cleared on restart).
+  // Stoc de sesiuni in memorie (se sterge la restart).
   private final Map<String, AdminSession> sessions = new ConcurrentHashMap<>();
 
   public String createSession(Long adminId) {

@@ -1,7 +1,7 @@
 package com.tudorverse.admitere_facultate_api.dto;
 
 /**
- * Summary of the admission processing results returned to the admin trigger.
+ * Rezumatul rezultatelor procesarii admiterii returnat la declansare de admin.
  */
 public record ProcesareAdmitereResponse(int dosareProcesate, int dosareAdmise,
     int dosareNealocate) {
